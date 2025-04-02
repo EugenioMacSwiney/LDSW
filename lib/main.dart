@@ -1,28 +1,80 @@
 import 'package:flutter/material.dart';
 
+void main() {
+  runApp(
+    const MaterialApp(
+      title: 'LDSW App',
+      home: HomeScreen(),
+    ),
+  );
+}
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/background.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Column(
+          children: [
+            MyAppBar(
+              title: Text(
+                '3.5. Home screen',
+                style: Theme.of(context).primaryTextTheme.titleLarge,
+              ),
+            ),
+            const Expanded(
+              child: Center(
+                child: Text(
+                  'BIENVENIDO',
+                  style: TextStyle(
+                    fontSize: 24,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    shadows: [
+                      Shadow(
+                        blurRadius: 10,
+                        color: Colors.black,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class MyAppBar extends StatelessWidget {
   const MyAppBar({required this.title, super.key});
-
-  // Fields in a Widget subclass are always marked "final".
 
   final Widget title;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 56, // in logical pixels
+      height: 56,
       padding: const EdgeInsets.symmetric(horizontal: 8),
-      decoration: BoxDecoration(color: Colors.blue[500]),
-      // Row is a horizontal, linear layout.
+      decoration: BoxDecoration(
+        color: Colors.blue[500]?.withOpacity(0.8),
+      ),
       child: Row(
         children: [
           const IconButton(
             icon: Icon(Icons.menu),
             tooltip: 'Navigation menu',
-            onPressed: null, // null disables the button
+            onPressed: null,
           ),
-          // Expanded expands its child
-          // to fill the available space.
           Expanded(child: title),
           const IconButton(
             icon: Icon(Icons.search),
@@ -33,39 +85,4 @@ class MyAppBar extends StatelessWidget {
       ),
     );
   }
-}
-
-class MyScaffold extends StatelessWidget {
-  const MyScaffold({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    // Material is a conceptual piece
-    // of paper on which the UI appears.
-    return Material(
-      // Column is a vertical, linear layout.
-      child: Column(
-        children: [
-          MyAppBar(
-            title: Text(
-              'Welcome to Flutter',
-              style:
-              Theme.of(context) //
-                  .primaryTextTheme.titleLarge,
-            ),
-          ),
-          const Expanded(child: Center(child: Text('Hello, world!'))),
-        ],
-      ),
-    );
-  }
-}
-
-void main() {
-  runApp(
-    const MaterialApp(
-      title: 'My app', // used by the OS task switcher
-      home: SafeArea(child: MyScaffold()),
-    ),
-  );
 }
