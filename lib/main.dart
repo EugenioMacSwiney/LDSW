@@ -1,14 +1,16 @@
 import 'dart:convert' as convert;
+import 'package:firebase_core/firebase_core.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(
-    const MaterialApp(
-      title: 'LDSW App',
-      home: HomeScreen(),
-    ),
+import 'firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
   );
+  runApp;
 }
 
 class HomeScreen extends StatefulWidget {
