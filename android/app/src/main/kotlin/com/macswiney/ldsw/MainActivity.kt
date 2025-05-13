@@ -1,4 +1,4 @@
-package com.example.ldsw
+package com.macswiney.ldsw
 
 import io.flutter.embedding.android.FlutterActivity
 
